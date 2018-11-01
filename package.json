@@ -1,0 +1,27 @@
+{
+  "name": "@chetnashah/buildyourownangularjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "jQuery": "1.7.4",
+    "jasmine": "3.3.0",
+    "lodash": "4.17.11",
+    "sinon": "7.1.1",
+    "testem": "2.13.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "3.3.0",
+    "karma": "3.1.1",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-htmlfile-reporter": "0.3.7",
+    "karma-jasmine": "1.1.2",
+    "karma-jasmine-html-reporter": "1.4.0"
+  }
+}
