@@ -451,5 +451,144 @@ describe('Scope', function(){
             }, 50);
         });
 
+        it('calls postDigest after digest is over', function(done){
+            scope.ctr = 0;
+
+            scope.$$postDigest(function(){
+                scope.ctr++;
+            });
+
+            expect(scope.ctr).toBe(0);
+            
+            scope.$digest();
+            expect(scope.ctr).toBe(1);
+            
+            scope.$digest();
+            expect(scope.ctr).toBe(1);
+            done();
+        });
+
+        it('does not include $$postDigest in the digest', function(done) {
+            scope.aval = 'original value';
+
+            scope.$$postDigest(function(){
+                scope.aval = 'changed value';
+            });
+
+            scope.$watch(
+                function(sc){ return sc.aval; },
+                function(newVal, oldVal, sc) {
+                    sc.watchedVal = newVal;
+                }
+            );
+
+            scope.$digest();
+            expect(scope.watchedVal).toBe('original value');
+
+            scope.$digest()
+            expect(scope.watchedVal).toBe('changed value');
+            done();
+        });
+
+        it('catches exceptions in watch functions and continues', function(done){
+            scope.aval = 'abc';
+            scope.ctr = 0;
+
+            scope.$watch(
+                function(sc){ throw "error"; },
+                function(newVal, oldVal, sc){ }
+            );
+            scope.$watch(
+                function(sc) { return sc.aval; },
+                function(newVal, oldVal, sc){ sc.ctr++; }
+            );
+
+            scope.$digest();
+            expect(scope.ctr).toBe(1);
+            done();
+        });
+
+        it('catches errors in listener functions and continues', function(done){
+            scope.aval = 'abc';
+            scope.ctr = 0;
+
+            scope.$watch(
+                function(sc) { return sc.aval; },
+                function(newVal, oldVal, sc) { throw "Error"; }
+            );
+
+            // this watch should not be affected
+            scope.$watch(
+                function(sc) { return sc.aval; },
+                function(newVal, oldVal, sc) {
+                    sc.ctr++;
+                }
+            );
+
+            scope.$digest();
+            expect(scope.ctr).toBe(1);
+            done();
+
+        });
+
+
+        it('catches exceptions in $evalAsync', function(done){
+            scope.aval = 'abc';
+            scope.ctr = 0;
+
+            scope.$watch(
+                function(sc){ return sc.aval; },
+                function(newVal, oldVal, sc){
+                    sc.ctr++;
+                }
+            );
+
+            scope.$evalAsync(function(sc){
+                throw "Error";
+            });
+
+            setTimeout(() => {
+                expect(scope.ctr).toBe(1);
+                done();
+            }, 50);
+        });
+
+        it('catches exceptions in $applyAsynv', function(done){
+            scope.$applyAsync(function(sc){
+                throw "Error";
+            });
+
+            scope.$applyAsync(function(sc){
+                throw "Error";
+            });
+
+            scope.$applyAsync(function(sc){
+                sc.applied = true;
+            });
+
+            setTimeout(() => {
+                expect(scope.applied).toBe(true);
+                done();
+            }, 50);
+        });
+
+        it('catches exceptions in $$postDigest', function(){
+            var didRun = false;
+
+            scope.$$postDigest(function(){
+                throw "error!";
+            });
+            scope.$$postDigest(function(){
+                throw "Error";
+            });
+            scope.$$postDigest(function(){
+                didRun = true;
+            });
+
+            scope.$digest();
+            expect(didRun).toBe(true);
+            done();
+        });
+
     })
 });

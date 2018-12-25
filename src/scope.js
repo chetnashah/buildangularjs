@@ -9,6 +9,7 @@ function Scope(){
     this.$$watchers = [];
     this.$$asyncQueue = [];
     this.$$applyAsyncQueue = [];
+    this.$$postDigestQueue = [];
     this.$$applyAsyncId = null;
     this.$$phase = '';
 }
@@ -43,7 +44,7 @@ Scope.prototype.$$areEqual = function(newVal, oldVal, valueEq) {
     }
 }
 
-// runs all watchers once and
+// runs all watchers once (along with triggering listeners if necessary) and
 // returns a boolean telling if something was dirty
 Scope.prototype.$$digestOnce = function(){
     // process each watcher in list of watchers
@@ -51,19 +52,25 @@ Scope.prototype.$$digestOnce = function(){
     var oldVal, newVal, dirty;
     // every registered watch function is called in digest cycle
     _.forEach(this.$$watchers, function(watcher){
-        
-        oldVal = watcher.last;// we remember last value in the watcher
-        newVal = watcher.watchFn(self);
+        // try-catch because execution of one watch
+        // should not break other watches
+        try {
+            oldVal = watcher.last;// we remember last value in the watcher
+            newVal = watcher.watchFn(self);
         // console.log(newVal, oldVal);
-        if(!self.$$areEqual(newVal, oldVal, watcher.valueEq)){
-            self.$$lastDirtyWatch = watcher;
-            watcher.last = watcher.valueEq ? _.cloneDeep(newVal) : newVal;
-            // when going from initVal to any other val
-            // return same for both newVal and oldVal
-            watcher.listenerFn(newVal, oldVal === initWatchVal ? newVal : oldVal, self);
-            dirty = true;
-        } else if (self.$$lastDirtyWatch === watcher) {
-            return false;
+            if(!self.$$areEqual(newVal, oldVal, watcher.valueEq)){
+                self.$$lastDirtyWatch = watcher;
+                watcher.last = watcher.valueEq ? _.cloneDeep(newVal) : newVal;
+                // when going from initVal to any other val
+                // return same for both newVal and oldVal
+                watcher.listenerFn(newVal, oldVal === initWatchVal ? newVal : oldVal, self);
+                dirty = true;
+            } else if (self.$$lastDirtyWatch === watcher) {
+                return false;
+            }
+        } catch (error) {
+            console.error('error = ', error);
+            return;
         }
     });
     return dirty;
@@ -85,20 +92,29 @@ Scope.prototype.$digest = function(){
 
    var dirty = this.$$digestOnce();
    console.trace('outside');
-   console.log('outside dirty = ', dirty, this);
+   console.log('outside dirty = ', dirty);
    while((dirty && ttl--) || (this.$$asyncQueue.length && ttl--)){
+      console.log('inside - asyncQueue.len = ', this.$$asyncQueue.length);
+      // bcoz evalAsync exprs are part of a digest cycle.
       while(this.$$asyncQueue.length) {
         var asyncTask = this.$$asyncQueue.shift();
         asyncTask.scope.$eval(asyncTask.expression);
       }
       dirty = this.$$digestOnce();
-      console.log('inside dirty = ', dirty, this);
+      console.log('inside dirty = ', dirty);
    }
    this.$clearPhase();
    if (ttl <= 0) {
        throw new Error('Reached TTL limit');
    }
-
+   while(this.$$postDigestQueue.length) {
+       // we do not trigger anything
+       try {
+           this.$$postDigestQueue.shift()();
+       } catch (error) {
+           console.error('postdigest expr error - ', error);
+       }
+   }
 }
 
 /**
@@ -126,6 +142,8 @@ Scope.prototype.$$flushApplyAsync = function(){
     this.$$applyAsyncId = null;
 }
 
+// unlike evalAsync, applyAsync does not execute in same digest
+// batches multiple invocations and is flushed if digest happens before it.
 Scope.prototype.$applyAsync = function(expr) {
     var self = this;
     // defering by putting eval-expr in func
@@ -142,6 +160,7 @@ Scope.prototype.$applyAsync = function(expr) {
 }
 
 //this triggers a $digest if not already present
+// schedules expr to run later, but still in the same digest.
 Scope.prototype.$evalAsync = function(expr) {
     var self = this;
     // check if no phase is running and no task pending b4 adding task
@@ -174,3 +193,10 @@ Scope.prototype.$beginPhase = function(phase){
 Scope.prototype.$clearPhase = function(phase) {
     this.$$phase = null;
 }
+
+Scope.prototype.$$postDigest = function(expr) {
+    this.$$postDigestQueue.push(expr);
+}
+
+// there are two places where
+// exceptions can happen, 

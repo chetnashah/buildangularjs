@@ -13,15 +13,15 @@
         <td colspan="3" title="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36">Browser: Chrome 71.0.3578 (Windows 10 0.0.0)</td>
       </tr>
       <tr class="overview">
-        <td colspan="3">Timestamp: 2018-12-18 00:13:20</td>
+        <td colspan="3">Timestamp: 2018-12-25 23:27:08</td>
       </tr>
       <tr>
         <td colspan="3">
-          24 tests / 
+          31 tests / 
           0 errors / 
-          0 failures / 
+          3 failures / 
           0 skipped / 
-          runtime: 0.322s
+          runtime: 0.368s
         </td>
       </tr>
       <tr class="header">
@@ -30,63 +30,28 @@
         <td>Suite / Results</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.001s</td>
-        <td>says hello to receiver</td>
-        <td>hello</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0.055s</td>
-        <td>shedules a digest when $evalAsync is used</td>
-        <td>Scope &raquo; $eval</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0.055s</td>
-        <td>flushes applyAsync calls(execute synchronously) if digest is run</td>
-        <td>Scope &raquo; $eval</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0.023s</td>
-        <td>coalasces many calls to $applyAsync</td>
-        <td>Scope &raquo; $eval</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0.007s</td>
-        <td>executes $evalAsync'ed code later in the same digest</td>
-        <td>Scope &raquo; $eval</td>
+        <td>Passed in 0.01s</td>
+        <td>calls listener with new value same as old value the first time</td>
+        <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
         <td>Passed in 0.006s</td>
-        <td>has a $$phase field whose value is the current digest phase</td>
-        <td>Scope &raquo; $eval</td>
+        <td>triggers chained watchers in same external digest call</td>
+        <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.011s</td>
-        <td>eventually halts tasks added by evalAsync in watch functions</td>
-        <td>Scope &raquo; $eval</td>
+        <td>Passed in 0.007s</td>
+        <td>throws when processing an unstable digest after a fixed TTL</td>
+        <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.052s</td>
-        <td>never executes $applyAsync'ed function in the same digest cycle where it used</td>
-        <td>Scope &raquo; $eval</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0.055s</td>
-        <td>allows async $apply via $applyAsync</td>
-        <td>Scope &raquo; $eval</td>
+        <td>Passed in 0.005s</td>
+        <td>may register watch without a listener function</td>
+        <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
         <td>Passed in 0.003s</td>
-        <td>executes apply'ed function and runs digest</td>
-        <td>Scope &raquo; $eval</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0s</td>
-        <td>executes evaled function and returns the result</td>
-        <td>Scope &raquo; $eval</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0.002s</td>
-        <td>correctly handles NaNs</td>
+        <td>does not end digest, and lets new watchers e.g. added in listeners also run</td>
         <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
@@ -95,143 +60,298 @@
         <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.005s</td>
+        <td>Passed in 0.014s</td>
         <td> supports value equality watching instead of references</td>
         <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.003s</td>
-        <td>may register watch without a listener function</td>
-        <td>Scope &raquo; digest</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0.003s</td>
-        <td>calls watch function with scope as its argument</td>
-        <td>Scope &raquo; digest</td>
-      </tr>
-      <tr class="pass">
-        <td>Passed in 0.002s</td>
+        <td>Passed in 0.001s</td>
         <td>calls listener when watch value is undefined</td>
         <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.002s</td>
+        <td>Passed in 0.003s</td>
+        <td>short circuits on a clean watch</td>
+        <td>Scope &raquo; digest</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.001s</td>
         <td>calls listener function on first digest</td>
         <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
         <td>Passed in 0.004s</td>
-        <td>triggers chained watchers in same external digest call</td>
+        <td>calls watch function with scope as its argument</td>
         <td>Scope &raquo; digest</td>
       </tr>
       <tr class="pass">
         <td>Passed in 0.001s</td>
-        <td>calls listener with new value same as old value the first time</td>
+        <td>correctly handles NaNs</td>
         <td>Scope &raquo; digest</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>never executes $applyAsync'ed function in the same digest cycle where it used</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.022s</td>
+        <td>coalasces many calls to $applyAsync</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.057s</td>
+        <td>shedules a digest when $evalAsync is used</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="fail">
+        <td>Failed</td>
+        <td>catches exceptions in $$postDigest</td>
+        <td>
+          Scope &raquo; $eval
+          <br />ReferenceError: done is not defined
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (test/scope__spec.js:590:13)
+    at &lt;Jasmine&gt;
+
+        </td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.011s</td>
+        <td>catches errors in listener functions and continues</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.003s</td>
+        <td>has a $$phase field whose value is the current digest phase</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.057s</td>
+        <td>allows async $apply via $applyAsync</td>
+        <td>Scope &raquo; $eval</td>
       </tr>
       <tr class="pass">
         <td>Passed in 0.005s</td>
-        <td>does not end digest, and lets new watchers e.g. added in listeners also run</td>
-        <td>Scope &raquo; digest</td>
+        <td>eventually halts tasks added by evalAsync in watch functions</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.058s</td>
+        <td>flushes applyAsync calls(execute synchronously) if digest is run</td>
+        <td>Scope &raquo; $eval</td>
       </tr>
       <tr class="pass">
         <td>Passed in 0.006s</td>
-        <td>throws when processing an unstable digest after a fixed TTL</td>
-        <td>Scope &raquo; digest</td>
+        <td>calls postDigest after digest is over</td>
+        <td>Scope &raquo; $eval</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.018s</td>
-        <td>short circuits on a clean watch</td>
-        <td>Scope &raquo; digest</td>
+        <td>Passed in 0.005s</td>
+        <td>executes apply'ed function and runs digest</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.002s</td>
+        <td>executes $evalAsync'ed code later in the same digest</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="fail">
+        <td>Failed</td>
+        <td>catches exceptions in $evalAsync</td>
+        <td>
+          Scope &raquo; $eval
+          <br />Uncaught Error thrown
+
+        </td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.004s</td>
+        <td>does not include $$postDigest in the digest</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0s</td>
+        <td>executes evaled function and returns the result</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.007s</td>
+        <td>catches exceptions in watch functions and continues</td>
+        <td>Scope &raquo; $eval</td>
+      </tr>
+      <tr class="fail">
+        <td>Failed</td>
+        <td>catches exceptions in $applyAsynv</td>
+        <td>
+          Scope &raquo; $eval
+          <br />Uncaught Error thrown
+
+        </td>
       </tr>
       <tr class="pass">
         <td>Passed in 0.001s</td>
         <td>Can be created and acts like a regular Object</td>
         <td>Scope</td>
       </tr>
+      <tr class="pass">
+        <td>Passed in 0.002s</td>
+        <td>says hello to receiver</td>
+        <td>hello</td>
+      </tr>
       <tr class="system-out">
-        <td colspan="3"><strong>System output:</strong><br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', a: 'a', ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', a: 'a', ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', watchCtr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'def'}, aVal: 'def'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', watchCtr: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'def'}, aVal: 'def'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', watchCtr: 1, listenCtr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'def'}, aval: 'def'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', watchCtr: 2, listenCtr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'def'}, aval: 'def'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', asyncEvaluated: false, asyncEvaluatedImmediately: false, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', asyncEvaluated: true, asyncEvaluatedImmediately: false, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', avalue: 'a', phaseInWatchFunction: '$digest', phaseInListenerFunction: '$digest', phaseInApplyFunction: '$apply', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', avalue: 'a', phaseInWatchFunction: '$digest', phaseInListenerFunction: '$digest', phaseInApplyFunction: '$apply', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [Object{scope: ..., expression: ...}], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [function(){ ... }], $$applyAsyncId: 24, $$phase: '$digest', aval: 'a', asyncApplied: false, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [function(){ ... }], $$applyAsyncId: 24, $$phase: '$digest', aval: 'a', asyncApplied: false, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', asyncApplied: true, $$lastDirtyWatch: null}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'a', ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'b', ctr: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'b'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', aval: 'b', ctr: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'b'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', val: 'aval', ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'aval'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', val: 'aval', ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'aval'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', val: 'bval', ctr: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'bval'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', val: 'bval', ctr: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 'bval'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', n: NaN, ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: NaN}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', n: NaN, ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: NaN}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', n: NaN, ctr: 1, $$lastDirtyWatch: null}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 'a', coutner: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newValue, oldValue, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 'a', coutner: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newValue, oldValue, sc) { ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 'a', coutner: 1, $$lastDirtyWatch: null}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 'b', coutner: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newValue, oldValue, sc) { ... }, valueEq: false, last: 'b'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 'b', coutner: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newValue, oldValue, sc) { ... }, valueEq: false, last: 'b'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'arr changed, arr = ', [1, 2, 3]
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', arr: [1, 2, 3], ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: true, last: [..., ..., ...]}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', arr: [1, 2, 3], ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: true, last: [..., ..., ...]}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'arr changed, arr = ', [1, 2, -1]
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', arr: [1, 2, -1], ctr: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: true, last: [..., ..., ...]}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', arr: [1, 2, -1], ctr: 2, $$lastDirtyWatch: Object{watchFn: function(sc) { ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: true, last: [..., ..., ...]}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', $$lastDirtyWatch: Object{watchFn: function () { ... }, listenerFn: function(){ ... }, valueEq: false, last: undefined}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', $$lastDirtyWatch: Object{watchFn: function () { ... }, listenerFn: function(){ ... }, valueEq: false, last: undefined}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', $$lastDirtyWatch: Object{watchFn: function () { ... }, listenerFn: function(){ ... }, valueEq: false, last: undefined}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', $$lastDirtyWatch: Object{watchFn: function () { ... }, listenerFn: function(){ ... }, valueEq: false, last: undefined}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', counter: 1, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: undefined}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', counter: 1, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: undefined}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', $$lastDirtyWatch: Object{watchFn: function(){ ... }, listenerFn: function () { ... }, valueEq: false, last: 'wat'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', $$lastDirtyWatch: Object{watchFn: function(){ ... }, listenerFn: function () { ... }, valueEq: false, last: 'wat'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', name: 'Jane', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 'Jane'}, nameUpper: 'JANE'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', name: 'Jane', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 'JANE'}, nameUpper: 'JANE', initial: 'J.'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', name: 'Jane', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 'JANE'}, nameUpper: 'JANE', initial: 'J.'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', name: 'Bob', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 'Bob'}, nameUpper: 'BOB', initial: 'J.'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', name: 'Bob', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 'BOB'}, nameUpper: 'BOB', initial: 'B.'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', name: 'Bob', $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 'BOB'}, nameUpper: 'BOB', initial: 'B.'}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 123, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 123}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 123, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc) { ... }, valueEq: false, last: 123}}
+        <td colspan="3"><strong>System output:</strong><br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
 <br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'oldVal = ', 'a'
 <br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'newVal = ', 'a'
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 'a', ctr: 0, $$lastDirtyWatch: null}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 'a', ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc2) { ... }, listenerFn: function(newVal2, oldVal2, sc2){ ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', someValue: 'a', ctr: 1, $$lastDirtyWatch: Object{watchFn: function(sc2) { ... }, listenerFn: function(newVal2, oldVal2, sc2){ ... }, valueEq: false, last: 'a'}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 1, cntB: 1, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 1}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 2, cntB: 2, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 2}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 3, cntB: 3, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 3}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 4, cntB: 4, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 4}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 5, cntB: 5, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 5}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 6, cntB: 6, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 6}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 7, cntB: 7, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 7}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 8, cntB: 8, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 8}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 9, cntB: 9, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 9}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 10, cntB: 10, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 10}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', cntA: 11, cntB: 11, $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 11}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', array: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99], $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 99}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', array: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99], $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 99}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', array: [1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99], $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 1}}
-<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined, Scope{$$watchers: [Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}, Object{watchFn: ..., listenerFn: ..., valueEq: ..., last: ...}], $$asyncQueue: [], $$applyAsyncQueue: [], $$applyAsyncId: null, $$phase: '$digest', array: [1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99], $$lastDirtyWatch: Object{watchFn: function(sc){ ... }, listenerFn: function(newVal, oldVal, sc){ ... }, valueEq: false, last: 1}}
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'arr changed, arr = ', [1, 2, 3]
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'arr changed, arr = ', [1, 2, -1]
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) ERROR: 'postdigest expr error - ', 'error!'
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) ERROR: 'postdigest expr error - ', 'Error'
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) ERROR: 'error = ', 'Error'
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 1
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) ERROR: 'error = ', 'error'
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'outside dirty = ', true
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside - asyncQueue.len = ', 0
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) ERROR: 'error = ', 'error'
+<br />Chrome 71.0.3578 (Windows 10 0.0.0) LOG: 'inside dirty = ', undefined
 </td>
       </tr>
     </table>
