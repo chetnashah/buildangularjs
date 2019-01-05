@@ -35,6 +35,7 @@ Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
         var idx = self.$$watchers.indexOf(watcher);
         if (idx > -1) {
             self.$$watchers.splice(idx, 1);
+            self.$$lastDirtyWatch = null;
         }
     };
 }
@@ -61,12 +62,13 @@ Scope.prototype.$$digestOnce = function(){
     // every registered watch function is called in digest cycle
     // watchers array can be modified from watchExpr or listnerExpr e.g. by doing destroy on a watcher inside listnerexpr
     // forEachRight is used coz, we iterate from end to beginning bcoz some watcher might remove itself.
-    _.forEachRight(this.$$watchers, function(watcher){
+    _.forEachRight(this.$$watchers, function(watcher, idx){
         // try-catch because execution of one watch
         // should not break other watches
         try {
             oldVal = watcher.last;// we remember last value in the watcher
             newVal = watcher.watchFn(self);
+            console.log('idx = ', idx, ' oldVal = ', oldVal, ' newVal = ', newVal);
         // console.log(newVal, oldVal);
             if(!self.$$areEqual(newVal, oldVal, watcher.valueEq)){
                 self.$$lastDirtyWatch = watcher;
@@ -76,6 +78,8 @@ Scope.prototype.$$digestOnce = function(){
                 watcher.listenerFn(newVal, oldVal === initWatchVal ? newVal : oldVal, self);
                 dirty = true;
             } else if (self.$$lastDirtyWatch === watcher) {
+                // lodash supports early return in forEach
+                // by explicitly returning false
                 return false;
             }
         } catch (error) {
@@ -91,7 +95,6 @@ Scope.prototype.$$digestOnce = function(){
 Scope.prototype.$digest = function(){
     this.$beginPhase('$digest');// digest phase begins
     var ttl = 10;
-    debugger;
     this.$$lastDirtyWatch = null;
 
     // flush & clear applyAsync functions if present

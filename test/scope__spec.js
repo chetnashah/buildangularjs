@@ -646,5 +646,32 @@ describe('Scope', function(){
             done();
         });
 
+        fit('allows a $watch to destroy another watch during digest', function(done){
+            scope.aval = 'abc';
+            scope.ctr = 0;
+            scope.$watch(
+                function(sc) { return sc.aval; },
+                function(newVal, oldVal, sc) {
+                    destroyWatch();
+                }
+            );
+
+            var destroyWatch = scope.$watch(
+                function(sc) { },
+                function(newVal, oldVal, sc) {}
+            );
+
+            scope.$watch(
+                function(sc) { return sc.aval; },
+                function(newVal, oldVal, sc) {
+                    sc.ctr++;
+                }
+            );
+
+            scope.$digest();
+            expect(scope.ctr).toBe(1);
+            done();
+        });
+
     })
 });
