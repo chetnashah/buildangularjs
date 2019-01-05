@@ -20,15 +20,23 @@ function Scope(){
 Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
     // watch registration happens here, add them to list of watchers
     // these functions are only called during digest cycle
-    this.$$watchers.push({
+    var self = this;
+    var watcher = {
         watchFn: watchFn,
         listenerFn: listenerFn || function(){},
         valueEq: !!valueEq,
         last: initWatchVal
-    });
+    };
+    self.$$watchers.unshift(watcher);
     // lastdirtywatch stores last dirty watcher in the list  at a scope level
     // also reset this scope level variable when any new watcher is added.
-    this.$$lastDirtyWatch = null;
+    self.$$lastDirtyWatch = null;
+    return function(){
+        var idx = self.$$watchers.indexOf(watcher);
+        if (idx > -1) {
+            self.$$watchers.splice(idx, 1);
+        }
+    };
 }
 
 Scope.prototype.$$areEqual = function(newVal, oldVal, valueEq) {
@@ -51,7 +59,9 @@ Scope.prototype.$$digestOnce = function(){
     var self = this;
     var oldVal, newVal, dirty;
     // every registered watch function is called in digest cycle
-    _.forEach(this.$$watchers, function(watcher){
+    // watchers array can be modified from watchExpr or listnerExpr e.g. by doing destroy on a watcher inside listnerexpr
+    // forEachRight is used coz, we iterate from end to beginning bcoz some watcher might remove itself.
+    _.forEachRight(this.$$watchers, function(watcher){
         // try-catch because execution of one watch
         // should not break other watches
         try {
@@ -90,31 +100,35 @@ Scope.prototype.$digest = function(){
         this.$$flushApplyAsync();
     }
 
-   var dirty = this.$$digestOnce();
-   console.trace('outside');
-   console.log('outside dirty = ', dirty);
-   while((dirty && ttl--) || (this.$$asyncQueue.length && ttl--)){
-      console.log('inside - asyncQueue.len = ', this.$$asyncQueue.length);
-      // bcoz evalAsync exprs are part of a digest cycle.
-      while(this.$$asyncQueue.length) {
-        var asyncTask = this.$$asyncQueue.shift();
-        asyncTask.scope.$eval(asyncTask.expression);
-      }
-      dirty = this.$$digestOnce();
-      console.log('inside dirty = ', dirty);
-   }
-   this.$clearPhase();
-   if (ttl <= 0) {
-       throw new Error('Reached TTL limit');
-   }
-   while(this.$$postDigestQueue.length) {
-       // we do not trigger anything
-       try {
-           this.$$postDigestQueue.shift()();
-       } catch (error) {
-           console.error('postdigest expr error - ', error);
-       }
-   }
+    var dirty = this.$$digestOnce();
+    console.trace('outside');
+    console.log('outside dirty = ', dirty);
+        while((dirty && ttl--) || (this.$$asyncQueue.length && ttl--)){
+            console.log('inside - asyncQueue.len = ', this.$$asyncQueue.length);
+        // bcoz evalAsync exprs are part of a digest cycle.
+        while(this.$$asyncQueue.length) {
+            try {
+                var asyncTask = this.$$asyncQueue.shift();
+                asyncTask.scope.$eval(asyncTask.expression);
+            } catch(err) {
+                console.error(err);
+            }
+        }
+        dirty = this.$$digestOnce();
+        console.log('inside dirty = ', dirty);
+    }
+    this.$clearPhase();
+        if (ttl <= 0) {
+        throw new Error('Reached TTL limit');
+    }
+    while(this.$$postDigestQueue.length) {
+        // we do not trigger anything
+        try {
+            this.$$postDigestQueue.shift()();
+        } catch (error) {
+            console.error('postdigest expr error - ', error);
+        }
+    }
 }
 
 /**
@@ -137,7 +151,11 @@ Scope.prototype.$apply = function(expr) {
 // call all functions in applyAsyncQueue
 Scope.prototype.$$flushApplyAsync = function(){
     while(this.$$applyAsyncQueue.length) {
-        this.$$applyAsyncQueue.shift()();
+        try {
+            this.$$applyAsyncQueue.shift()();
+        } catch (error) {
+            console.error(error);
+        }
     }
     this.$$applyAsyncId = null;
 }

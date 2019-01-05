@@ -1,10 +1,11 @@
+
+
 describe('Scope', function(){
     it('Can be created and acts like a regular Object', function(){
         var scope = new Scope();
         scope.aprop = 1;
         expect(scope.aprop).toBe(1);
     });
-
     describe('digest', function(){
 
         var scope;
@@ -572,7 +573,7 @@ describe('Scope', function(){
             }, 50);
         });
 
-        it('catches exceptions in $$postDigest', function(){
+        it('catches exceptions in $$postDigest', function(done){
             var didRun = false;
 
             scope.$$postDigest(function(){
@@ -587,6 +588,61 @@ describe('Scope', function(){
 
             scope.$digest();
             expect(didRun).toBe(true);
+            done();
+        });
+
+        it('allows destroying a $watch with a removal function', function(done) {
+            scope.aval = 'abc';
+            scope.ctr = 0;
+
+            var destroyWatch = scope.$watch(
+                function(sc) { return sc.aval; },
+                function(newVal, oldVal, sc) { sc.ctr++; }
+            );
+
+            scope.$digest();
+            expect(scope.ctr).toBe(1);
+
+            scope.aval = 'def';
+            scope.$digest();
+            expect(scope.ctr).toBe(2);
+
+            scope.aval = 'xyz';// no effect
+            destroyWatch();
+            scope.aval = '4';// no effect
+            scope.$digest();
+            expect(scope.ctr).toBe(2);
+            done();
+        });
+
+        it('allows destroying a $watch during digest', function(done) {
+            scope.aval = 'abc';
+            var watchCalls = [];
+
+            scope.$watch(
+                function(sc) {
+                    watchCalls.push('first');
+                    return scope.aval;
+                }
+            );
+
+            var destroyWatch = scope.$watch(function(sc){
+                watchCalls.push('second');
+                destroyWatch();// destroy will modify watchers collection during digest
+                // return value does not matter,
+                // we are destroying the watcher
+            });
+
+            scope.$watch(
+                function(sc) {
+                    watchCalls.push('third');
+                    return scope.aval;
+                }
+            );
+
+            scope.$digest();
+            console.log(watchCalls);
+            expect(watchCalls).toEqual(['first', 'second', 'third', 'first', 'third']);
             done();
         });
 
